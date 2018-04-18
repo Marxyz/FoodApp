@@ -1,0 +1,80 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+
+    <!--Odcienie ogólnej potrzeby-->
+    <SolidColorBrush x:Key="TenPercentDarkerBrush"
+                     Color="Black"
+                     Opacity="0.1" />
+
+    <SolidColorBrush x:Key="TenPercentLighterBrush"
+                     Color="White"
+                     Opacity="0.1" />
+
+    <SolidColorBrush x:Key="HighlightBrush"
+                     Color="Red" />
+
+
+    <!--Windowsowy pasek-->
+
+    <SolidColorBrush x:Key="WindowsbarBackgroundBrush"
+                     Color="#406e1c" />
+
+    <SolidColorBrush x:Key="WindowsbarButtonHoverBrush"
+                     Color="#8ab446" />
+
+    <SolidColorBrush x:Key="WindowsbarButtonBackgroundBrush"
+                     Color="#406e1c" />
+
+    <SolidColorBrush x:Key="WindowsbarForegroundBrush"
+                     Color="White" />
+
+    <SolidColorBrush x:Key="WindowsbarButtonPressedBrush"
+                     Color="#8ab446" />
+
+    <SolidColorBrush x:Key="WindowsbarButtonPressedForegroundBrush"
+                     Color="White" />
+
+
+    <!--Paleta kolorów aplikacji-->
+
+    <SolidColorBrush x:Key="ApplicationForegroundBrush"
+                     Color="ForestGreen" />
+
+    <SolidColorBrush x:Key="PageWhiteBackgroundBrush"
+                     Color="White" />
+
+    <!--Kolory dla menu-->
+
+
+    <SolidColorBrush x:Key="MenuBackgroundBrush"
+                     Color="ForestGreen" />
+
+    <SolidColorBrush x:Key="MenuItemHoverBrush"
+                     Color="Green"
+                     Opacity="0.3" />
+
+    <SolidColorBrush x:Key="MenuItemPressedBrush"
+                     Color="Green" />
+
+    <SolidColorBrush x:Key="MenuItemForegroundBrush"
+                     Color="White" />
+
+    <SolidColorBrush x:Key="MenuItemHoverForegroundBrush"
+                     Color="White" />
+
+    <SolidColorBrush x:Key="MenuItemPressedForegroundBrush"
+                     Color="White" />
+
+    <!--Kolory dla szablonu wyników wyszukiwania-->
+
+    <SolidColorBrush x:Key="SearchGridViewForegroundBrush"
+                     Color="ForestGreen" />
+    <SolidColorBrush x:Key="SearchGridViewBackgroundBrush"
+                     Color="LimeGreen" Opacity="0.1" />
+    <SolidColorBrush x:Key="SearchGridViewPointerOverDarkBrush"
+                     Color="DarkGreen" Opacity="0.4" />
+
+
+</ResourceDictionary>

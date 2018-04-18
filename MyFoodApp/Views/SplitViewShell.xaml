@@ -1,0 +1,145 @@
+﻿<Page
+    x:Class="MyFoodApp.Views.SplitViewShell"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:MyFoodApp.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:models="using:MyFoodApp.Models"
+    mc:Ignorable="d">
+
+    <Page.DataContext>
+        <models:MenuViewModel />
+    </Page.DataContext>
+    <Page.Resources>
+        <x:String x:Key="HamburgerIcon">M0,24L32,24 32,26 0,26z M0,12L32,12 32,14 0,14z M0,0L32,0 32,2 0,2z</x:String>
+
+        <Style x:Key="MenuListViewItemStyle"
+               TargetType="ListViewItem">
+
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ListViewItem">
+                        <ListViewItemPresenter
+                            SelectedBackground="{StaticResource MenuItemPressedBrush}"
+                            SelectedPointerOverBackground="{StaticResource MenuItemPressedBrush}"
+                            PointerOverBackground="{StaticResource MenuItemHoverBrush}"
+                            PressedBackground="{StaticResource MenuItemPressedBrush}"
+                            ContentTransitions="{TemplateBinding ContentTransitions}"
+                            HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                            VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                            ContentMargin="{TemplateBinding Padding}" />
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+
+        </Style>
+
+        <DataTemplate x:Key="MenuItemTemplate"
+                      x:DataType="models:MenuItem">
+            <StackPanel Orientation="Horizontal" Margin="0">
+                <Border Background="Transparent"
+                        ToolTipService.ToolTip="{x:Bind Text}">
+                    <Path x:Name="Glyph" Data="{x:Bind Glyph}"
+                          VerticalAlignment="Center"
+                          HorizontalAlignment="Center"
+                          Height="24"
+                          Width="24"
+                          Fill="{StaticResource MenuItemForegroundBrush}"
+                          Stretch="Uniform" />
+                </Border>
+                <TextBlock Text="{x:Bind Text}"
+                           Margin="12,0,0,0"
+                           Foreground="{StaticResource MenuItemForegroundBrush}"
+                           VerticalAlignment="Center" />
+            </StackPanel>
+        </DataTemplate>
+    </Page.Resources>
+
+    <Grid Background="White">
+        <SplitView x:Name="MainSplitView"
+                   IsPaneOpen="False"
+                   CompactPaneLength="48"
+                   OpenPaneLength="260"
+                   PaneBackground="{StaticResource MenuBackgroundBrush}"
+                   DisplayMode="Overlay"
+                   PaneClosing="MainSplitView_OnPaneClosing">
+            <SplitView.Pane>
+                <Grid x:Name="MainSplitViewPaneGrid"
+                      VerticalAlignment="Stretch"
+                      HorizontalAlignment="Stretch"
+                      ManipulationMode="TranslateX"
+                      ManipulationCompleted="MainSplitViewPaneGrid_OnManipulationCompleted"
+                      Background="{StaticResource MenuBackgroundBrush}">
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <ListView x:Name="Menu"
+                              ItemsSource="{Binding Menu}"
+                              Margin="0,48,0,0"
+                              SelectionChanged="Menu_SelectionChanged"
+                              VerticalAlignment="Top"
+                              ItemContainerStyle="{StaticResource MenuListViewItemStyle}"
+                              ItemTemplate="{StaticResource MenuItemTemplate}" />
+
+                    <ListView x:Name="SecondMenu"
+                              ItemsSource="{Binding SecondMenu}"
+                              Margin="0,48,0,0"
+                              SelectionChanged="Menu_SelectionChanged"
+                              VerticalAlignment="Top"
+                              ItemContainerStyle="{StaticResource MenuListViewItemStyle}"
+                              ItemTemplate="{StaticResource MenuItemTemplate}"
+                              Grid.Row="2" />
+
+                </Grid>
+            </SplitView.Pane>
+            <SplitView.Content>
+                <Grid Background="White">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1080*" />
+                        
+                    </Grid.RowDefinitions>
+
+                    <!--Navigation Frame-->
+                    <Frame x:Name="SplitViewFrame" Navigated="SplitViewFrame_OnNavigated"
+                           Padding="0 0 0 0">
+                        <Frame.ContentTransitions>
+                            <TransitionCollection>
+                                <NavigationThemeTransition>
+                                    <NavigationThemeTransition.DefaultNavigationTransitionInfo>
+                                        <SlideNavigationTransitionInfo />
+                                    </NavigationThemeTransition.DefaultNavigationTransitionInfo>
+                                </NavigationThemeTransition>
+                            </TransitionCollection>
+                        </Frame.ContentTransitions>
+                    </Frame>
+                </Grid>
+            </SplitView.Content>
+
+        </SplitView>
+        <Button x:Name="HamburgerButton"
+                Width="48"
+                Height="48"
+                Background="Transparent"
+                Foreground="{StaticResource ApplicationForegroundBrush}"
+                VerticalAlignment="Top"
+                BorderThickness="0"
+                Margin="0"
+                Click="HamburgerButton_Click">
+            <Path x:Name="HamburgerButtonGlyph"
+                  Data="{StaticResource HamburgerIcon}"
+                  Fill="{StaticResource ApplicationForegroundBrush}"
+                  VerticalAlignment="Center"
+                  HorizontalAlignment="Center"
+                  Height="24"
+                  Width="24"
+                  Stretch="Uniform" />
+        </Button>
+
+
+    </Grid>
+</Page>
